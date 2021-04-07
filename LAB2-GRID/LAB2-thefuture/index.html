@@ -13,6 +13,15 @@
             text-align: center;
         }
 
+        .grid > div {
+            padding: 4rem 0;
+            margin: 5px;
+        }
+
+        .grid {
+            display: grid;
+        }
+
         .hw {
             background: red;
         }
@@ -23,6 +32,12 @@
 
         .inf {
             background: yellow;
+        }
+
+        @media screen and (min-width: 700px){
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
