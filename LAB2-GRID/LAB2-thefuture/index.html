@@ -23,20 +23,32 @@
         }
 
         .hw {
-            background: red;
+            background: mistyrose;
         }
 
         .br {
-            background: green;
+            background: lavender;
         }
 
         .inf {
-            background: yellow;
+            background: lemonchiffon;
         }
 
         @media screen and (min-width: 700px){
             .grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (min-width: 1200px){
+            .grid {
+                grid-template-columns: repeat(5, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+                
+            }
+
+            .br {
+                grid-area: 1/3/4/4;
             }
         }
     </style>
