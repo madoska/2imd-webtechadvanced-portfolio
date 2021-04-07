@@ -5,6 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GRIDTICKET</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-rows: 2fr 5fr 1fr 1fr;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .header, .qr_code, .price {
+            grid-column: 1 / span 2;
+        }
+
+        .header {
+            background: black;
+            color: white;
+        }
+        
+        .qr_code > img {
+            width: 50vw;
+        }
+    </style>
 </head>
 <body>
     <div class="grid">
@@ -12,7 +38,7 @@
             <h1>weareimd</h1>
             <p>Live programming music</p>
         </div>
-        <div class="qr_code"><img src="https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"></div>
+        <div class="qr_code"><img src="images/qr-code.png"></div>
         <div class="date">Feb 29</div>
         <div class="admission">Admit one</div>
         <div class="price">Ticket <span>€15</span></div>
