@@ -25,6 +25,7 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            text-align: center;
         }
 
         .header, .qr_code, .price {
@@ -42,7 +43,55 @@
         }
 
         .date, .admission, .price {
-            border: 1px solid black;
+            border: 3px solid black;
+        }
+
+        .incl {
+            display: none !important;
+        }
+
+        @media screen and (min-width: 700px){
+            .grid {
+                grid-template-rows: 3fr 1fr 1fr;
+                grid-template-columns: repeat(5, 1fr);
+            }
+
+            .header {
+                grid-column: 1 / span 3;
+            }
+
+            h1 {
+                order: 1;
+            }
+
+            .qr_code {
+                grid-area: 1 / 4 / span 3 / span 5;
+                border: 3px solid black;
+            }
+
+            .qr_code > img {
+                width: 30vw;
+            }
+
+            .date {
+                grid-column: 1 / 2;
+            }
+
+            .admission {
+                grid-column: 2 / 3;
+            }
+
+            .price {
+                grid-column: 3 / 4;
+            }
+
+            .incl {
+                letter-spacing: 0;
+                text-transform: none;
+                display: block !important;
+                grid-column: 1 / 4;
+                border: 3px solid black;
+            }
         }
     </style>
 </head>
@@ -56,6 +105,7 @@
         <div class="date">Feb 29</div>
         <div class="admission">Admit one</div>
         <div class="price">Ticket €15</div>
+        <div class="incl">Being frustrated with CSS Grid is included in the ticket price.</div>
     </div>
 </body>
 </html>
