@@ -41,11 +41,9 @@ class Note {
   
       // HINT🤩
       // pressing the enter key in the text field triggers the createNote function
-      // this.txtTodo = ???
       this.txtTodo = document.getElementById("taskInput");
-      // this.txtTodo.addEventListener("keypress", this.createNote.bind(this));
       this.txtTodo.addEventListener("keypress", this.createNote.bind(this));
-      // read up on .bind() -> we need to pass the current meaning of this to the eventListener
+
       // when the app loads, we can show previously saved noted from localstorage
       // this.loadNotesFromStorage();
     }
@@ -68,11 +66,13 @@ class Note {
         const note = new Note(this.txtTodo.value);
         note.add();
         console.log(note);
-    }
+        this.reset();
+      }
     }
   
     reset() {
-      // this function should reset the form / clear the text field
+      console.log("reset");
+      this.txtTodo.value = "";
     }
   }
   
