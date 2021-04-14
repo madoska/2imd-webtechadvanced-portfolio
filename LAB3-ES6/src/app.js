@@ -11,7 +11,7 @@ class Note {
       newNote.innerHTML = title;
 
       // HINT🤩 newNote.addEventListener('click', this.remove.bind(newNote));
-  
+      newNote.addEventListener('click', this.remove.bind(newNote));
       return newNote;
     }
   
@@ -36,6 +36,8 @@ class Note {
       // in this function, 'this' will refer to the current note element
       // .removeChild(this)
       // remove the item from screen and from localstorage
+      const removeNote = document.getElementById("taskList");
+      removeNote.removeChild(this);
     }
   }
   
