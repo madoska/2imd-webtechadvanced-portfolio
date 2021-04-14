@@ -38,6 +38,11 @@ class Note {
       // remove the item from screen and from localstorage
       const removeNote = document.getElementById("taskList");
       removeNote.removeChild(this);
+
+      const loadNotes = JSON.parse(localStorage.getItem('storedNotes'));
+      const index = loadNotes.indexOf(this.innerHTML);
+      loadNotes.splice(index, 1);
+      localStorage.setItem('storedNotes',JSON.stringify(loadNotes));
     }
   }
   
