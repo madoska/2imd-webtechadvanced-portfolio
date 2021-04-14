@@ -25,7 +25,7 @@ class Note {
       // HINT🤩
       // localStorage only supports strings, not arrays
       // if you want to store arrays, look at JSON.parse and JSON.stringify
-      var storeNotes = [];
+      let storeNotes = [];
       storeNotes = JSON.parse(localStorage.getItem('storedNotes')) || [];
       storeNotes.push(this.title);
       localStorage.setItem('storedNotes', JSON.stringify(storeNotes));
@@ -50,11 +50,18 @@ class Note {
 
       // when the app loads, we can show previously saved noted from localstorage
       // this.loadNotesFromStorage();
+      this.loadNotesFromStorage();
     }
   
     loadNotesFromStorage() {
+      console.log('hi');
       // HINT🤩
       // load all notes from storage here and add them to the screen
+      let loadNotes = JSON.parse(localStorage.getItem('storedNotes'));
+        loadNotes.forEach(note => {
+          const noteLoaded = new Note(note);
+          noteLoaded.add();
+        })
     }
   
     createNote(e) {
