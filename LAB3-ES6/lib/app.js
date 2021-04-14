@@ -10,33 +10,40 @@ var Note = /*#__PURE__*/function () {
   function Note(title) {
     _classCallCheck(this, Note);
 
-    this.title = title; // HINT🤩 this.element = this.createElement(title);
+    this.title = title;
+    this.element = this.createElement(title);
   }
 
   _createClass(Note, [{
     key: "createElement",
     value: function createElement(title) {
-      var newNote = document.createElement("li"); // HINT🤩 newNote.addEventListener('click', this.remove.bind(newNote));
-
+      var newNote = document.createElement("li");
+      newNote.innerHTML = title;
+      newNote.addEventListener('click', this.remove.bind(newNote));
       return newNote;
     }
   }, {
     key: "add",
-    value: function add() {// HINT🤩
-      // this function should append the note to the screen somehow
+    value: function add() {
+      document.getElementById("taskList").appendChild(this.element);
     }
   }, {
     key: "saveToStorage",
-    value: function saveToStorage() {// HINT🤩
-      // localStorage only supports strings, not arrays
-      // if you want to store arrays, look at JSON.parse and JSON.stringify
+    value: function saveToStorage() {
+      var storeNotes = [];
+      storeNotes = JSON.parse(localStorage.getItem('storedNotes')) || [];
+      storeNotes.push(this.title);
+      localStorage.setItem('storedNotes', JSON.stringify(storeNotes));
     }
   }, {
     key: "remove",
-    value: function remove() {// HINT🤩 the meaning of 'this' was set by bind() in the createElement function
-      // in this function, 'this' will refer to the current note element
-      // .removeChild(this)
-      // remove the item from screen and from localstorage
+    value: function remove() {
+      var removeNote = document.getElementById("taskList");
+      removeNote.removeChild(this);
+      var loadNotes = JSON.parse(localStorage.getItem('storedNotes'));
+      var index = loadNotes.indexOf(this.innerHTML);
+      loadNotes.splice(index, 1);
+      localStorage.setItem('storedNotes', JSON.stringify(loadNotes));
     }
   }]);
 
@@ -47,41 +54,35 @@ var App = /*#__PURE__*/function () {
   function App() {
     _classCallCheck(this, App);
 
-    console.log("👊🏼 The Constructor!"); // HINT🤩
-    // pressing the enter key in the text field triggers the createNote function
-    // this.txtTodo = ???
-
-    this.txtTodo = document.getElementById("taskInput"); // this.txtTodo.addEventListener("keypress", this.createNote.bind(this));
-
-    this.txtTodo.addEventListener("keypress", this.createNote.bind(this)); // read up on .bind() -> we need to pass the current meaning of this to the eventListener
-    // when the app loads, we can show previously saved noted from localstorage
-    // this.loadNotesFromStorage();
+    this.txtTodo = document.getElementById("taskInput");
+    this.txtTodo.addEventListener("keypress", this.createNote.bind(this));
+    this.loadNotesFromStorage();
   }
 
   _createClass(App, [{
     key: "loadNotesFromStorage",
-    value: function loadNotesFromStorage() {// HINT🤩
-      // load all notes from storage here and add them to the screen
+    value: function loadNotesFromStorage() {
+      var loadNotes = JSON.parse(localStorage.getItem('storedNotes'));
+      loadNotes.forEach(function (note) {
+        var noteLoaded = new Note(note);
+        noteLoaded.add();
+      });
     }
   }, {
     key: "createNote",
     value: function createNote(e) {
-      console.log(this.txtTodo.value);
-
       if (e.key === "Enter") {
         e.preventDefault();
-        console.log(this.txtTodo.value);
-      } // this function should create a new note by using the Note() class
-      // HINT🤩
-      // note.add();
-      // note.saveToStorage();
-      // clear the text field with .reset in this class
-      // if (e.key === "Enter")
-
+        var note = new Note(this.txtTodo.value);
+        note.add();
+        this.reset();
+        note.saveToStorage();
+      }
     }
   }, {
     key: "reset",
-    value: function reset() {// this function should reset the form / clear the text field
+    value: function reset() {
+      this.txtTodo.value = "";
     }
   }]);
 
