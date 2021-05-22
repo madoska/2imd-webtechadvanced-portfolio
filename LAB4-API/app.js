@@ -72,10 +72,13 @@ class App {
         
         fetch(url)
         .then(response => {
-            return response.json;
+            return response.json();
         })
         .then(json => {
-
+            let title = json.Title;
+            let poster = json.Poster;
+            
+            console.log(poster + " " + title);
         })
         .catch(err => {
             console.log(err);
