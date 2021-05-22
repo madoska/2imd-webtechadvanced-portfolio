@@ -1,11 +1,12 @@
 class App {
     constructor() {
-        this.getLocation();
-        this.lat;
-        this.long;
+        var localStorage = window.localStorage.length;
 
-        let getWeatherFromLocalStorage = localStorage.getItem('temp');
-        console.log(getWeatherFromLocalStorage);
+        if (localStorage === 0) {
+            this.getLocation();
+        } else {
+            this.generateAd();
+        }
     }
 
     getLocation() {
@@ -23,25 +24,28 @@ class App {
         const apiKey = "840cba60f6c94296f5869989ee855d97";
         const unit = "metric";
         const url = `${baseUrl}lat=${lat}&lon=${long}&APPID=${apiKey}&units=${unit}`;
-        
+
         fetch(url)
             .then(response => {
                 return response.json();
             })
             .then(json => {
                 let temp = json.main['temp'];
-                console.log(temp);
-
                 this.saveWeatherToLocalstorage(temp);
+                this.generateAd();
             })
             .catch(err => {
                 console.log(err);
             });
     }
 
-    saveWeatherToLocalstorage(temp){
-        console.log(temp);
+    saveWeatherToLocalstorage(temp) {
         localStorage.setItem('temp', JSON.stringify(temp));
+    }
+
+    generateAd() {
+        let temp = JSON.parse(localStorage.getItem('temp'));
+        console.log(temp);
     }
 
     fetchLocationFailed(err) {
