@@ -12,30 +12,30 @@ class App {
     fetchLocationSuccess(result) {
         this.lat = result.coords.latitude;
         this.long = result.coords.longitude;
-        let location = [this.lat, this.long];
-        this.getWeather(location);
+        this.getWeather(this.lat, this.long);
     }
 
-    getWeather(location) {
-        const baseUrl = "https://api.tomorrow.io/v4/timelines";
-        const apiKey = "UCuDjOGkeJ11ItScQ18n8ZIQA7OtbdOC";
-        const timestep = "current";
-        const field = "temperature";
-        const unit = "metric";
-        const timezone = "Europe/Brussels";
-        const url = `${baseUrl}?location=${location}&fields=${field}&timesteps=${timestep}&timezone=${timezone}&units=${unit}&apikey=${apiKey}`;
+    getWeather(lat, long) {
+        const baseUrl = "https://api.openweathermap.org/data/2.5/weather?";
+        const apiKey = "840cba60f6c94296f5869989ee855d97";
+        const url = `${baseUrl}lat=${lat}&lon=${long}&APPID=${apiKey}`;
         
         fetch(url)
             .then(response => {
-                console.log(response);
-                response.json;
+                return response.json;
             })
             .then(data => {
-                console.log(data);
             })
             .catch(err => {
                 console.log(err);
             });
+    }
+
+    saveWeatherToLocalstorage(data){
+        let storeWeather = [];
+        storeWeather = JSON.parse(localStorage.getItem('weather')) || [];
+        storeWeather.push(data);
+        localStorage.setItem('weather', JSON.stringify(storeWeather));
     }
 
     fetchLocationFailed(err) {
