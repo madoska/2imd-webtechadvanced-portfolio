@@ -78,11 +78,16 @@ class App {
             let title = json.Title;
             let poster = json.Poster;
             
-            console.log(poster + " " + title);
+            this.saveMovieToLocalStorage(title, poster);
         })
         .catch(err => {
             console.log(err);
         });
+    }
+
+    saveMovieToLocalStorage(title, poster){
+        localStorage.setItem('movieTitle', JSON.stringify(title));
+        localStorage.setItem('moviePoster', JSON.stringify(poster));
     }
 
     fetchLocationFailed(err) {
