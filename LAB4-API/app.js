@@ -46,12 +46,13 @@ class App {
 
     generateAd() {
         let temp = JSON.parse(localStorage.getItem('temp'));
-        if (temp === null) {
-            console.log(temp);
-        } else {
-            document.querySelector('#temp').innerHTML = temp;
-        }
+        document.getElementById('temp').innerHTML = temp;
 
+        if(temp < 20){
+            document.getElementById('desc').innerHTML = "Get the blood flowing with";
+        } else {
+            document.getElementById('desc').innerHTML = "Catch the summer vibes with";
+        }
     }
 
     fetchLocationFailed(err) {
