@@ -3,6 +3,9 @@ class App {
         this.getLocation();
         this.lat;
         this.long;
+
+        let getWeatherFromLocalStorage = localStorage.getItem('temp');
+        console.log(getWeatherFromLocalStorage);
     }
 
     getLocation() {
