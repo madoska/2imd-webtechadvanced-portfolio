@@ -28,17 +28,17 @@ class App {
             .then(json => {
                 let temp = json.main['temp'];
                 console.log(temp);
+
+                this.saveWeatherToLocalstorage(temp);
             })
             .catch(err => {
                 console.log(err);
             });
     }
 
-    saveWeatherToLocalstorage(data){
-        let storeWeather = [];
-        storeWeather = JSON.parse(localStorage.getItem('weather')) || [];
-        storeWeather.push(data);
-        localStorage.setItem('weather', JSON.stringify(storeWeather));
+    saveWeatherToLocalstorage(temp){
+        console.log(temp);
+        localStorage.setItem('temp', JSON.stringify(temp));
     }
 
     fetchLocationFailed(err) {
