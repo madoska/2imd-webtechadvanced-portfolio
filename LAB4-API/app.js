@@ -58,7 +58,8 @@ class App {
     }
 
     getMovie(temp){
-        const omdbUrl = "http://www.omdbapi.com/?t=";
+        const omdbUrl = "http://www.omdbapi.com/?";
+        const omdbKey = "5f42cc82";
         let movie;
 
         if(temp < 20){
@@ -67,8 +68,18 @@ class App {
             movie = "kings+of+summer";
         }
 
-        let url = `${omdbUrl}${movie}`;
-        console.log(url);
+        let url = `${omdbUrl}apikey=${omdbKey}&t=${movie}`;
+        
+        fetch(url)
+        .then(response => {
+            return response.json;
+        })
+        .then(json => {
+
+        })
+        .catch(err => {
+            console.log(err);
+        });
     }
 
     fetchLocationFailed(err) {
