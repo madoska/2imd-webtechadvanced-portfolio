@@ -49,10 +49,26 @@ class App {
         document.getElementById('temp').innerHTML = temp;
 
         if(temp < 20){
-            document.getElementById('desc').innerHTML = "Get the blood flowing with";
+            document.getElementById('desc').innerHTML = "Get your blood flowing with";
         } else {
             document.getElementById('desc').innerHTML = "Catch the summer vibes with";
         }
+
+        this.getMovie(temp);
+    }
+
+    getMovie(temp){
+        const omdbUrl = "http://www.omdbapi.com/?t=";
+        let movie;
+
+        if(temp < 20){
+            movie = "hereditary";
+        } else {
+            movie = "kings+of+summer";
+        }
+
+        let url = `${omdbUrl}${movie}`;
+        console.log(url);
     }
 
     fetchLocationFailed(err) {
