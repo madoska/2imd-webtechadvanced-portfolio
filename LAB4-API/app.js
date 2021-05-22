@@ -16,7 +16,7 @@ class App {
     }
 
     getWeather(lat, long) {
-        const baseUrl = "https://api.openweathermap.org/data/2.5/weather?";
+        const baseUrl = "https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?";
         const apiKey = "840cba60f6c94296f5869989ee855d97";
         const unit = "metric";
         const url = `${baseUrl}lat=${lat}&lon=${long}&APPID=${apiKey}&units=${unit}`;
