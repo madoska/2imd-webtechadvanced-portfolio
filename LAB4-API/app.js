@@ -1,12 +1,6 @@
 class App {
     constructor() {
-        var localStorage = window.localStorage.length;
-
-        if (localStorage === 0) {
-            this.getLocation();
-        } else {
-            this.generateAd();
-        }
+        this.getLocation();
     }
 
     getLocation() {
@@ -25,18 +19,25 @@ class App {
         const unit = "metric";
         const url = `${baseUrl}lat=${lat}&lon=${long}&APPID=${apiKey}&units=${unit}`;
 
-        fetch(url)
-            .then(response => {
-                return response.json();
-            })
-            .then(json => {
-                let temp = json.main['temp'];
-                this.saveWeatherToLocalstorage(temp);
-                this.generateAd();
-            })
-            .catch(err => {
-                console.log(err);
-            });
+        var localStorage = window.localStorage.length;
+
+        if (localStorage === 0) {
+            fetch(url)
+                .then(response => {
+                    return response.json();
+                })
+                .then(json => {
+                    let temp = json.main['temp'];
+                    this.saveWeatherToLocalstorage(temp);
+                    this.generateAd();
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        } else {
+            this.generateAd();
+        }
+
     }
 
     saveWeatherToLocalstorage(temp) {
@@ -45,7 +46,12 @@ class App {
 
     generateAd() {
         let temp = JSON.parse(localStorage.getItem('temp'));
-        console.log(temp);
+        if (temp === null) {
+            console.log(temp);
+        } else {
+            document.querySelector('#temp').innerHTML = temp;
+        }
+
     }
 
     fetchLocationFailed(err) {
