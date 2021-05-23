@@ -49,7 +49,7 @@ class App {
         document.getElementById('temp').innerHTML = temp;
 
         if(temp < 20){
-            document.getElementById('desc').innerHTML = "Get your blood flowing with";
+            document.getElementById('desc').innerHTML = "Get your blood pumping with";
         } else {
             document.getElementById('desc').innerHTML = "Catch the summer vibes with";
         }
