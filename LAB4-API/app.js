@@ -14,7 +14,7 @@ class App {
     }
 
     getWeather(lat, long) {
-        const baseUrl = "https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?";
+        const baseUrl = "https://api.openweathermap.org/data/2.5/weather?";
         const apiKey = "840cba60f6c94296f5869989ee855d97";
         const unit = "metric";
         const url = `${baseUrl}lat=${lat}&lon=${long}&APPID=${apiKey}&units=${unit}`;
@@ -79,6 +79,7 @@ class App {
             let poster = json.Poster;
             
             this.saveMovieToLocalStorage(title, poster);
+            this.addPosterToAd();
         })
         .catch(err => {
             console.log(err);
@@ -88,6 +89,13 @@ class App {
     saveMovieToLocalStorage(title, poster){
         localStorage.setItem('movieTitle', JSON.stringify(title));
         localStorage.setItem('moviePoster', JSON.stringify(poster));
+    }
+
+    addPosterToAd(){
+        let title = JSON.parse(localStorage.getItem('movieTitle'));
+        let poster = JSON.parse(localStorage.getItem('moviePoster'));
+        document.getElementById('movie').innerHTML = title;
+        document.getElementById('poster').innerHTML = `<img src="${poster}">`;
     }
 
     fetchLocationFailed(err) {
