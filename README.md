@@ -1,6 +1,6 @@
 # Portfolio Medina Dadurgova
 
-## Lab 1 — GIT
+## Lab 1 - GIT
 1. [Collaborating with Git: build a website](https://github.com/madoska/2imd-dev-advanced-lab1)
 2. [GIT-IT](/LAB1-GIT/git-screenshot.png)
 
@@ -12,3 +12,6 @@
 
 ## Lab 3 - ES6
 1. [Notes App (Codepen)](https://codepen.io/madoska/pen/QWdrZZV)
+
+## Lab 4 - API
+1. [Weather Ad (Codepen)](https://codepen.io/madoska/pen/oNZZRzw)
