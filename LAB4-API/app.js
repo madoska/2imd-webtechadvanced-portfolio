@@ -14,7 +14,7 @@ class App {
     }
 
     getWeather(lat, long) {
-        const baseUrl = "https://api.openweathermap.org/data/2.5/weather?";
+        const baseUrl = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?";
         const apiKey = "840cba60f6c94296f5869989ee855d97";
         const unit = "metric";
         const url = `${baseUrl}lat=${lat}&lon=${long}&APPID=${apiKey}&units=${unit}`;
@@ -58,7 +58,7 @@ class App {
     }
 
     getMovie(temp){
-        const omdbUrl = "http://www.omdbapi.com/?";
+        const omdbUrl = "https://cors-anywhere.herokuapp.com/http://www.omdbapi.com/?";
         const omdbKey = "5f42cc82";
         let movie;
 
